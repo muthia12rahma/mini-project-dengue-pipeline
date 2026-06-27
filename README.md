@@ -1,4 +1,4 @@
-# MuthiaRahma-G0401241007-mini-project-dengue-pipeline
+# G0401241007-mini-project-dengue-pipeline
 Pipeline analisis bioinformatika multivariat sekuens genom Virus Dengue.
 # Pipeline Analisis Multivariat Sekuens Genom Virus Dengue
 
@@ -6,15 +6,46 @@ Repositori ini dibuat untuk memenuhi tugas **Mini Project Analisis Pipeline Bioi
 
 ---
 
-## 🛠️ Alur Kerja & Metodologi Pipeline
-Program dijalankan menggunakan bahasa **Python 3** dengan pendekatan analisis bioinformatika kontekstual pada virologi:
-1. **Penyimpanan Struktur Data (List & Dictionary):** Mengurai dokumen FASTA, menyimpan indeks ke dalam *List*, dan menghitung frekuensi distribusi nukleotida tunggal (A, C, G, T) menggunakan struktur *Dictionary*.
-2. **Karakterisasi Termal ($T_m$):** Menghitung estimasi *Melting Temperature* global untuk mengukur stabilitas ikatan sekunder RNA selama fase replikasi untai ganda perantara.
-3. **Penanda Imunitas (CpG Ratio):** Menghitung rasio dinukleotida CpG (*Observed vs Expected*). Virus Dengue secara evolusioner melakukan penekanan (*depletion*) terhadap marka CpG untuk menghindari deteksi oleh protein antiviral ZAP pada sel inang mamalia.
-4. **Skor Komposit (Multivariat):** Menentukan 3 sekuens terbaik menggunakan pembobotan terintegrasi: **40% GC Content + 40% Tm + 20% CpG Ratio**.
+## Alur Pipeline
 
+Pipeline berjalan secara sekuensial mengikuti diagram alir berikut:
+
+```text
+[dengue.fasta] ──> (1. Parsing FASTA) ──> Disimpan dalam LIST (Header, Seq)
+                                                    │
+                                                    ▼
+                                      (2. Perhitungan Frekuensi) ──> DICTIONARY Basa (A,C,G,T)
+                                                    │
+                                                    ▼
+                                      (3. Ekstraksi Metrik Multivariat)
+                                        ├── GC Content (%)
+                                        ├── Estimasi Melting Temperature / Tm (°C)
+                                        └── Rasio O/E Dinukleotida CpG
+                                                    │
+                                                    ▼
+                                      (4. Integrasi Skor Komposit)
+                                                    │
+                                                    ▼
+                                      (5. Pengurutan & Ekspor Data)
+                                        ├── Top 3 D Ditampilkan di Terminal
+                                        ├── File Tabular 'hasil_analisis_dengue_advanced.csv'
+                                        └── Plot Grafik 'grafik_analisis_multivariat.png'
+```
+## 🛠️ Metodologi Kontekstual & Rumus AnalisisPendekatan analisis dalam pipeline ini tidak hanya mengukur kuantitas basa tunggal, melainkan mengintegrasikan tiga parameter fungsional virologi:
+1. Penyimpanan Struktur Data (List & Dictionary): Mengurai dokumen FASTA, menyimpan indeks sekuens ke dalam konstruksi data List, dan memetakan frekuensi sekuensial nukleotida tunggal ($A, C, G, T$) menggunakan pemetaan kata kunci pada Dictionary.
+2. Karakterisasi Termal ($T_m$): Menghitung estimasi Melting Temperature global untuk memprediksi stabilitas termodinamika sekunder RNA ketika membentuk untai ganda perantara (dsRNA intermediate) saat bereplikasi di sel inang. Menggunakan modifikasi rumus empiris berbasis kandungan garam:$$\text{Est. } T_m = 64.9 + 41 \times \frac{(G + C - 16.4)}{A + T + G + C}$$
+3. Penanda Imun (CpG Depletion Marker): Mengukur rasio antara frekuensi dinukleotida CpG yang teramati (Observed) dengan frekuensi acak teoretis (Expected). Virus ssRNA seperti Dengue secara evolusioner menekan jumlah CpG (CpG depletion) agar lolos dari degradasi oleh protein imun bawaan inang (Zinc Finger Antiviral Protein / ZAP).$$\text{Rasio CpG} = \frac{\text{Jumlah 'CG' aktual}}{\frac{\text{Jumlah 'C'} \times \text{Jumlah 'G'}}{\text{Total Panjang Basa}}}$$
+4. Skor Komposit Multivariat: Penentuan peringkat akhir tidak berbasis variabel tunggal, melainkan indeks komposit tertimbang:$$\text{Skor} = (\%GC \times 0.4) + (T_m \times 0.4) + (\text{Rasio CpG} \times 10 \times 0.2)$$
 ---
 
+## Struktur Repositori
+```text
+├── dengue.fasta                       # Dataset mentah sekuens nukleotida Virus Dengue
+├── main.py                            # Skrip utama pipeline analisis bioinformatika
+├── hasil_analisis_dengue_advanced.csv # Output tabular komprehensif seluruh isolat
+├── grafik_analisis_multivariat.png    # Visualisasi grafik komparatif multi-panel
+└── README.md                          # Dokumentasi teknis proyek
+```
 ## Hasil Analisis Utama (Top 3 Sekuens)
 Berdasarkan kriteria skor komposit multivariat, berikut merupakan 3 isolat terbaik dari dataset:
 1. **Rank 1:** lcl|MH450301.2_cds_AXB26592.2_1 (Skor: 56.39 | GC: 46.47% | Tm: 83.89°C)
@@ -37,3 +68,5 @@ Kloning repositori ini atau jalankan langsung skrip pada Google Colab dengan men
 ```bash
 pip install pandas matplotlib
 python main.py
+
+
