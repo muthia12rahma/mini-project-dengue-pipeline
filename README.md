@@ -1,13 +1,8 @@
 # MuthiaRahma-G0401241007-mini-project-dengue-pipeline
 Pipeline analisis bioinformatika multivariat sekuens genom Virus Dengue.
-# 🧬 Pipeline Analisis Multivariat Sekuens Genom Virus Dengue
+# Pipeline Analisis Multivariat Sekuens Genom Virus Dengue
 
 Repositori ini dibuat untuk memenuhi tugas **Mini Project Analisis Pipeline Bioinformatika** (Batas Pengumpulan: 27 Juni 2026). Program ini memproses sekuens genom Virus Dengue dari format mentah FASTA, melakukan analisis multivariat komposit, dan mengekspor hasilnya secara terstruktur.
-
-## 👥 Profil Mahasiswa
-* **Nama:** Muthia Rahma
-* **NIM:** G0401241007
-* **Program Studi/Fakultas:** Bioinformatika/FMIPA
 
 ---
 
@@ -20,24 +15,24 @@ Program dijalankan menggunakan bahasa **Python 3** dengan pendekatan analisis bi
 
 ---
 
-## 🏆 Hasil Analisis Utama (Top 3 Sekuens)
+## Hasil Analisis Utama (Top 3 Sekuens)
 Berdasarkan kriteria skor komposit multivariat, berikut merupakan 3 isolat terbaik dari dataset:
-1. **Rank 1:** [Isi ID Sekuens Terbaik ke-1] (Skor: ... | GC: ...% | Tm: ...°C)
-2. **Rank 2:** [Isi ID Sekuens Terbaik ke-2] (Skor: ... | GC: ...% | Tm: ...°C)
-3. **Rank 3:** [Isi ID Sekuens Terbaik ke-3] (Skor: ... | GC: ...% | Tm: ...°C)
+1. **Rank 1:** lcl|MH450301.2_cds_AXB26592.2_1 (Skor: 56.39 | GC: 46.47% | Tm: 83.89°C)
+2. **Rank 2:** lcl|KP772252.1_cds_AKC89102.1_1 (Skor: 56.31 | GC: 46.38% | Tm: 83.85°C)
+3. **Rank 3:** lcl|KR919821.1_cds_AMN88557.1_1 (Skor: 56.30 | GC: 46.42% | Tm: 83.87°C)
 
 *Catatan: Seluruh hasil tabulasi lengkap untuk seluruh isolat dapat diunduh pada file `hasil_analisis_dengue_advanced.csv`.*
 
 ---
 
-## 📉 Visualisasi Data
+## Visualisasi Data
 Berikut adalah visualisasi grafik komparatif multi-panel (GC Content, Estimasi Tm, dan Skor Komposit) yang diekspor langsung oleh sistem pipeline:
 
 ![Grafik Analisis Multivariat](grafik_analisis_multivariat.png)
 
 ---
 
-## 🚀 Cara Menjalankan Program
+## Cara Menjalankan Program
 Kloning repositori ini atau jalankan langsung skrip pada Google Colab dengan menginstal pustaka dependensi terlebih dahulu:
 ```bash
 pip install pandas matplotlib
