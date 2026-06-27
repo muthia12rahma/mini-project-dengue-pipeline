@@ -51,7 +51,8 @@ Pendekatan analisis dalam pipeline ini tidak hanya mengukur kuantitas basa tungg
 4. **Skor Komposit Multivariat**
    Penentuan peringkat akhir tidak berbasis variabel tunggal, melainkan menggunakan indeks komposit tertimbang untuk menghasilkan penilaian yang objektif:
 
-   $$\text{Skor} = (\%GC \times 0.4) + (T_m \times 0.4) + (\text{Rasio CpG} \times 10 \times 0.2)$$
+  $$\text{Skor} = (\%GC \times 0.4) + (T_m \times 0.4) + (\text{Rasio CpG} \times 10 \times 0.2)$$
+  
 ---
 
 ## Struktur Repositori
