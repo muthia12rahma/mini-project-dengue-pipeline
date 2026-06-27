@@ -31,11 +31,27 @@ Pipeline berjalan secara sekuensial mengikuti diagram alir berikut:
                                         ├── File Tabular 'hasil_analisis_dengue_advanced.csv'
                                         └── Plot Grafik 'grafik_analisis_multivariat.png'
 ```
-## 🛠️ Metodologi Kontekstual & Rumus AnalisisPendekatan analisis dalam pipeline ini tidak hanya mengukur kuantitas basa tunggal, melainkan mengintegrasikan tiga parameter fungsional virologi:
-1. Penyimpanan Struktur Data (List & Dictionary): Mengurai dokumen FASTA, menyimpan indeks sekuens ke dalam konstruksi data List, dan memetakan frekuensi sekuensial nukleotida tunggal ($A, C, G, T$) menggunakan pemetaan kata kunci pada Dictionary.
-2. Karakterisasi Termal ($T_m$): Menghitung estimasi Melting Temperature global untuk memprediksi stabilitas termodinamika sekunder RNA ketika membentuk untai ganda perantara (dsRNA intermediate) saat bereplikasi di sel inang. Menggunakan modifikasi rumus empiris berbasis kandungan garam:$$\text{Est. } T_m = 64.9 + 41 \times \frac{(G + C - 16.4)}{A + T + G + C}$$
-3. Penanda Imun (CpG Depletion Marker): Mengukur rasio antara frekuensi dinukleotida CpG yang teramati (Observed) dengan frekuensi acak teoretis (Expected). Virus ssRNA seperti Dengue secara evolusioner menekan jumlah CpG (CpG depletion) agar lolos dari degradasi oleh protein imun bawaan inang (Zinc Finger Antiviral Protein / ZAP).$$\text{Rasio CpG} = \frac{\text{Jumlah 'CG' aktual}}{\frac{\text{Jumlah 'C'} \times \text{Jumlah 'G'}}{\text{Total Panjang Basa}}}$$
-4. Skor Komposit Multivariat: Penentuan peringkat akhir tidak berbasis variabel tunggal, melainkan indeks komposit tertimbang:$$\text{Skor} = (\%GC \times 0.4) + (T_m \times 0.4) + (\text{Rasio CpG} \times 10 \times 0.2)$$
+## Metodologi Kontekstual & Rumus Analisis
+
+Pendekatan analisis dalam pipeline ini tidak hanya mengukur kuantitas basa tunggal, melainkan mengintegrasikan tiga parameter fungsional virologi:
+
+1. **Penyimpanan Struktur Data (List & Dictionary)**
+   Mengurai dokumen FASTA, menyimpan indeks sekuens ke dalam konstruksi data *List*, dan memetakan frekuensi sekuensial nukleotida tunggal ($A, C, G, T$) menggunakan pemetaan kata kunci pada *Dictionary*.
+
+2. **Karakterisasi Termal ($T_m$)**
+   Menghitung estimasi *Melting Temperature* global untuk memprediksi stabilitas termodinamika sekunder RNA ketika membentuk untai ganda perantara (*dsRNA intermediate*) saat bereplikasi di sel inang. Menggunakan modifikasi rumus empiris berbasis kandungan garam:
+
+   $$\text{Est. } T_m = 64.9 + 41 \times \frac{(G + C - 16.4)}{A + T + G + C}$$
+
+3. **Penanda Imun (*CpG Depletion Marker*)**
+   Mengukur rasio antara frekuensi dinukleotida CpG yang teramati (*Observed*) dengan frekuensi acak teoretis (*Expected*). Virus ssRNA seperti Dengue secara evolusioner menekan jumlah CpG (*CpG depletion*) agar lolos dari degradasi oleh protein imun bawaan inang (*Zinc Finger Antiviral Protein* / ZAP):
+
+   $$\text{Rasio CpG} = \frac{\text{Jumlah 'CG' aktual}}{\frac{\text{Jumlah 'C'} \times \text{Jumlah 'G'}}{\text{Total Panjang Basa}}}$$
+
+4. **Skor Komposit Multivariat**
+   Penentuan peringkat akhir tidak berbasis variabel tunggal, melainkan menggunakan indeks komposit tertimbang untuk menghasilkan penilaian yang objektif:
+
+   $$\text{Skor} = (\%GC \times 0.4) + (T_m \times 0.4) + (\text{Rasio CpG} \times 10 \times 0.2)$$
 ---
 
 ## Struktur Repositori
